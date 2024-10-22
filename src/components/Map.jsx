@@ -83,7 +83,7 @@ const Map = () => {
 
     // Llamar inmediatamente para enviar la ubicación
     sendLocationToAPI();
-    fetchClientLocations(); 
+    fetchClientLocations();
 
     // Enviar la ubicación a la API cada 10 segundos
     const intervalId = setInterval(() => {
@@ -93,54 +93,57 @@ const Map = () => {
 
     // Limpiar el intervalo y el watchPosition cuando se desmonte el componente
     return () => clearInterval(intervalId);
-    
+
   }, []); // Dependencias vacías para que se ejecute solo una vez
 
   return (
-    <div style={{ height: '500px', width: '80%' }}>
-      <div>
-        <h3>Tu ubicación:</h3>
-        <p>Latitud: {location.lat}</p>
-        <p>Longitud: {location.lon}</p>
-        {/* Mostrar id y nombre del localStorage */}
-        <p>ID: {userId}</p>
-        <p>Nombre: {userName}</p>
-      </div>
-      
-      {/* Mostrar lista de clientLocations */}
-      <div>
-        <h3>Lista de ubicaciones de usuarios:</h3>
-        <ul>
-          {clientLocations.map((client) => (
-            <li key={client.id}>
-              ID: {client.id}, Nombre: {client.nombre}, Latitud: {client.location.lat}, Longitud: {client.location.lon}
-            </li>
-          ))}
-        </ul>
-      </div>
-      
-      <MapContainer center={[location.lat, location.lon]} zoom={16} scrollWheelZoom={false} style={{ height: '100%', width: '100%' }}>
-        <TileLayer
-          attribution='&copy; <a href="https://carto.com/">CARTO</a>'
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
-        />
-        
-        {/* Marcador para la ubicación actual */}
-        <Marker position={[location.lat, location.lon]}>
-          <Popup>
-            Tu ubicación: Latitud {location.lat}, Longitud {location.lon}
-          </Popup>
-        </Marker>
-        
-        {/* Marcadores para las ubicaciones de los clientes */}
-        {clientLocations.map((client) => (
-          <Marker key={client.id} position={[parseFloat(client.location.lat), parseFloat(client.location.lon)]}>
+    <div className='w-12 h-screen flex'>
+      <div className='w-8 h-screen'>
+        <MapContainer center={[location.lat, location.lon]} zoom={16} scrollWheelZoom={false} style={{ height: '100%', width: '100%' }}>
+          <TileLayer
+            attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+            url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"
+          />
+
+          {/* Marcador para la ubicación actual */}
+          <Marker position={[location.lat, location.lon]}>
             <Popup>
-              Ubicación de {client.nombre}: Latitud {parseFloat(client.location.lat)}, Longitud {parseFloat(client.location.lon)}
+              Tu ubicación: Latitud {location.lat}, Longitud {location.lon}
             </Popup>
           </Marker>
-        ))}
-      </MapContainer>
+
+          {/* Marcadores para las ubicaciones de los clientes */}
+          {clientLocations.map((client) => (
+            <Marker key={client.id} position={[parseFloat(client.location.lat), parseFloat(client.location.lon)]}>
+              <Popup>
+                Ubicación de {client.nombre}: Latitud {parseFloat(client.location.lat)}, Longitud {parseFloat(client.location.lon)}
+              </Popup>
+            </Marker>
+          ))}
+        </MapContainer>
+      </div>
+      <div className='w-4 h-screen'>
+        <div>
+          <h3>Tu ubicación:</h3>
+          <p>Latitud: {location.lat}</p>
+          <p>Longitud: {location.lon}</p>
+          {/* Mostrar id y nombre del localStorage */}
+          <p>ID: {userId}</p>
+          <p>Nombre: {userName}</p>
+        </div>
+
+        {/* Mostrar lista de clientLocations */}
+        <div>
+          <h3>Lista de ubicaciones de usuarios:</h3>
+          <ul>
+            {clientLocations.map((client) => (
+              <li key={client.id}>
+                ID: {client.id}, Nombre: {client.nombre}, Latitud: {client.location.lat}, Longitud: {client.location.lon}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };
