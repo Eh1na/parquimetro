@@ -97,8 +97,8 @@ const Map = () => {
   }, []); // Dependencias vacías para que se ejecute solo una vez
 
   return (
-    <div className='w-12 h-screen flex'>
-      <div className='w-8 h-screen'>
+    <div className='w-12 h-auto flex'>
+      <div className='w-8 h-30rem'>
         <MapContainer center={[location.lat, location.lon]} zoom={16} scrollWheelZoom={false} style={{ height: '100%', width: '100%' }}>
           <TileLayer
             attribution='&copy; <a href="https://carto.com/">CARTO</a>'
@@ -122,7 +122,7 @@ const Map = () => {
           ))}
         </MapContainer>
       </div>
-      <div className='w-4 h-screen'>
+      <div className='w-4 h-auto'>
         <div>
           <h3>Tu ubicación:</h3>
           <p>Latitud: {location.lat}</p>
