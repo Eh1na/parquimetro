@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import PatenteDialog from '@/components/PatenteDialog';  // Importamos el componente del diálogo
 import VehiculosTable from '@/components/VehiculosTable'; // Importamos el componente de la tabla
+import SalidaDialog from '@/components/SalidaDialog'; // Importamos el diálogo de salida
 import { Button } from 'primereact/button';
 
 const GestionParquimetro = () => {
     const [dialogVisible, setDialogVisible] = useState(false);
+    const [salidaDialogVisible, setSalidaDialogVisible] = useState(false);
+    const [vehiculoSeleccionado, setVehiculoSeleccionado] = useState(null);
     const [vehiculos, setVehiculos] = useState([]);
 
     const agregarVehiculo = (vehiculo) => {
@@ -12,8 +15,8 @@ const GestionParquimetro = () => {
     };
 
     const marcarSalida = (vehiculo) => {
-        const updatedVehiculos = vehiculos.map(v => 
-            v.idVaucher === vehiculo.idVaucher ? { ...v, fechaHoraSalida: new Date().toLocaleString(), estado: 'Salido' } : v
+        const updatedVehiculos = vehiculos.map(v =>
+            v.idVaucher === vehiculo.idVaucher ? { ...v, fechaHoraSalida: vehiculo.fechaHoraSalida, estado: 'Salido' } : v
         );
         setVehiculos(updatedVehiculos);
     };
@@ -24,6 +27,11 @@ const GestionParquimetro = () => {
 
     const eliminarVehiculo = (vehiculo) => {
         setVehiculos(vehiculos.filter(v => v.idVaucher !== vehiculo.idVaucher));
+    };
+
+    const abrirSalidaDialog = (vehiculo) => {
+        setVehiculoSeleccionado(vehiculo);
+        setSalidaDialogVisible(true);
     };
 
     return (
@@ -39,15 +47,25 @@ const GestionParquimetro = () => {
             />
 
             {/* Componente de la tabla que muestra los vehículos ingresados */}
-            <VehiculosTable 
+            <VehiculosTable
                 vehiculos={vehiculos}
-                onSalida={marcarSalida}
+                onSalida={abrirSalidaDialog}
                 onReportar={reportarVehiculo}
                 onEliminar={eliminarVehiculo}
+            />
+
+            {/* Componente del diálogo de salida */}
+            <SalidaDialog
+                visible={salidaDialogVisible}
+                onHide={() => setSalidaDialogVisible(false)}
+                vehiculo={vehiculoSeleccionado}
+                onSubmit={(vehiculoActualizado) => {
+                    marcarSalida(vehiculoActualizado); 
+                    setSalidaDialogVisible(false);
+                }}
             />
         </div>
     );
 };
 
 export default GestionParquimetro;
-

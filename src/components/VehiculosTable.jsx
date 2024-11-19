@@ -42,6 +42,12 @@ const VehiculosTable = ({ vehiculos, onSalida, onReportar, onEliminar }) => {
         );
     };
 
+    // Formatear hora en formato HH:MM
+    const horaIngresoTemplate = (rowData) => {
+        const fechaIngreso = new Date(rowData.fechaHoraIngreso);
+        return fechaIngreso.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+    };
+
     return (
         <div>
             {/* Filtro de búsqueda por patente */}
@@ -61,7 +67,7 @@ const VehiculosTable = ({ vehiculos, onSalida, onReportar, onEliminar }) => {
             >
                 <Column field="idVaucher" header="ID Vaucher" hidden={isSmallScreen} />
                 <Column field="patente" header="Patente" />
-                <Column field="fechaHoraIngreso" header="Fecha/Hora Ingreso" sortable />
+                <Column header="Hora Ingreso" body={horaIngresoTemplate} sortable />
                 <Column field="fechaHoraSalida" header="Fecha/Hora Salida" hidden={isSmallScreen} />
                 <Column field="estado" header="Estado" hidden={isSmallScreen} />
                 <Column body={accionesTemplate} header="Acciones" />
