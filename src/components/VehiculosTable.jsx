@@ -48,6 +48,11 @@ const VehiculosTable = ({ vehiculos, onSalida, onReportar, onEliminar }) => {
         return fechaIngreso.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
     };
 
+    const horaSalidaTemplate = (rowData) => {
+        const fechaIngreso = new Date(rowData.fechaHoraSalida);
+        return fechaIngreso.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+    };
+
     return (
         <div>
             {/* Filtro de búsqueda por patente */}
@@ -68,7 +73,7 @@ const VehiculosTable = ({ vehiculos, onSalida, onReportar, onEliminar }) => {
                 <Column field="idVaucher" header="ID Vaucher" hidden={isSmallScreen} />
                 <Column field="patente" header="Patente" />
                 <Column header="Hora Ingreso" body={horaIngresoTemplate} sortable />
-                <Column field="fechaHoraSalida" header="Fecha/Hora Salida" hidden={isSmallScreen} />
+                <Column body={horaSalidaTemplate} header="Fecha/Hora Salida" hidden={isSmallScreen} />
                 <Column field="estado" header="Estado" hidden={isSmallScreen} />
                 <Column body={accionesTemplate} header="Acciones" />
             </DataTable>

@@ -4,7 +4,7 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import jsPDF from 'jspdf';
 
-const CobroEfectivoDialog = ({ visible, onHide, vehiculo, horaSalida, montoPago }) => {
+const CobroEfectivoDialog = ({ visible, onHide, vehiculo, horaSalida, montoPago,onSubmit }) => {
     const [montoRecibido, setMontoRecibido] = useState('');
     const [vuelto, setVuelto] = useState(0);
 
@@ -37,6 +37,7 @@ const CobroEfectivoDialog = ({ visible, onHide, vehiculo, horaSalida, montoPago 
 
         doc.save('boleta.pdf');
         setTimeout(()=>{onHide()},[3000])
+        onSubmit(vehiculo)
     };
 
     return (

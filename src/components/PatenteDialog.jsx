@@ -36,7 +36,7 @@ const PatenteDialog = ({ visible, onHide, onSubmit }) => {
             </div>
             <div className="flex mb-6">
                 <label>Hora actual </label>
-                <label>{new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}</label>
+                <label> {new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}</label>
             </div>
             <div className="flex justify-content-evenly">
                 <Button label="Cancelar" icon="pi pi-times" onClick={handlerClose} severity="danger" />

@@ -45,7 +45,7 @@ const Map = () => {
 
   return (
     <div className='w-full h-screen flex z-4'>
-      <div className='w-full h-screen'>
+      <div className='w-full h-screen hidden md:block'>
         <MapContainer className='z-2' center={[location.lat, location.lon]} zoom={16} scrollWheelZoom={false} zoomControl={false} style={{ height: '100%', width: '100%' }}>
           <TileLayer
             attribution='&copy; <a href="https://carto.com/">CARTO</a>'

@@ -46,6 +46,8 @@ const SalidaDialog = ({ visible, onHide, vehiculo, onSubmit }) => {
         }
     };
 
+    console.log(vehiculo);
+
     return (
         <>
             <Dialog visible={visible} onHide={onHide} header="Registrar Salida del Vehículo">
@@ -107,6 +109,7 @@ const SalidaDialog = ({ visible, onHide, vehiculo, onSubmit }) => {
                     vehiculo={vehiculo}
                     horaSalida={horaSalida}
                     montoPago={montoPago}
+                    onSubmit={onSubmit}
                 />
             )}
         </>

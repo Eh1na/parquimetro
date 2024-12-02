@@ -47,17 +47,16 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-content-center align-items-center w-full h-screen">
+    <div className="flex justify-content-center align-items-center w-full h-screen bg-primary">
       {/* Botón fijo para abrir el modal */}
       <div className="fixed z-5 top-0 right-0 w-10rem p-3">
-        <Button label="Ingresar" icon="pi pi-sign-in" className="p-button-raised" onClick={() => setVisible(true)} />
+        <Button label="Ingresar" icon="pi pi-sign-in" className="p-button-raised md:bg-primary bg-primary-reverse" onClick={() => setVisible(true)} />
       </div>
 
       {/* Modal del formulario de login */}
       <Dialog 
         header="Iniciar sesión" 
         visible={visible} 
-        style={{ width: '30vw' }} 
         onHide={() => setVisible(false)}
         dismissableMask // Permite cerrar el modal al hacer clic fuera
         draggable={false}

@@ -15,8 +15,11 @@ const GestionParquimetro = () => {
     };
 
     const marcarSalida = (vehiculo) => {
+        const fechaHoraActual = new Date().toISOString(); // Obtiene la fecha y hora actual en formato ISO
         const updatedVehiculos = vehiculos.map(v =>
-            v.idVaucher === vehiculo.idVaucher ? { ...v, fechaHoraSalida: vehiculo.fechaHoraSalida, estado: 'Salido' } : v
+            v.idVaucher === vehiculo.idVaucher
+                ? { ...v, fechaHoraSalida: fechaHoraActual, estado: 'Salido' }
+                : v
         );
         setVehiculos(updatedVehiculos);
     };
