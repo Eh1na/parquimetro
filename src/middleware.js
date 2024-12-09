@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server';
 
 // Definir las rutas que queremos proteger
-const protectedRoutes = ['/dashboard', '/profile','/','/*'];
+const protectedRoutes = ['/dashboard', '/profile','/','/gestionParquimetro','/*'];//reparar rutas no declaradas protegidas
 
 export function middleware(req) {
   const url = req.nextUrl.clone();

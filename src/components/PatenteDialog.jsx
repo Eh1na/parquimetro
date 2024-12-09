@@ -27,7 +27,10 @@ const PatenteDialog = ({ visible, onHide, onSubmit }) => {
                     value={patente}
                     onChange={(e) => {
                         const value = e.target.value.toUpperCase();
-                        if (value.length <= 6) {
+                        // Expresión regular para permitir solo letras y números
+                        const regex = /^[A-Z0-9]*$/;
+                    
+                        if (value.length <= 6 && regex.test(value)) {
                             setPatente(value);
                         }
                     }}
