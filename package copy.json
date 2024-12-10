@@ -1,0 +1,29 @@
+{
+  "name": "parquimetro",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.3.0",//manejo de contexto o estado global
+    "axios": "^1.7.7", //para crud http
+    "cookie": "^1.0.1", //para manejo de cookie (cargar sesion desde el back al front)
+    "js-cookie": "^3.0.5",//formateo de cookie
+    "jspdf": "^2.5.2",//generar pdf
+    "leaflet": "^1.9.4",//libreria de mapa
+    "next": "14.2.15",//framework
+    "primeflex": "^3.3.1",//librerias visual
+    "primeicons": "^7.0.0",//librerias visual
+    "primereact": "^10.8.4",//librerias visual
+    "react": "^18",
+    "react-dom": "^18",
+    "react-leaflet": "^4.2.1",//librerias de mapa para react
+    "react-redux": "^9.1.2",//manejo de contexto o estado global
+    "redux": "^5.0.1"//manejo de contexto o estado global,
+    "postgresql":"";
+  }
+}
