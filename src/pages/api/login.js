@@ -20,6 +20,12 @@ const users = [
     username: 'ricardo',
     password: 'ricardo123',
   },
+  {
+    id: 4,
+    nombre: 'PC',
+    username: 'pc',
+    password: '1234',
+  }
 ];
 
 export default async function handler(req, res) {
